@@ -915,9 +915,17 @@ filter: brightness(1.2);
 }
 
 .gear-row-icon {
-  width: 13px;
+  width: 15px;
   object-fit: contain;
   margin-left: 0 !important;
   opacity: 0.9;
+
+}
+
+.icon-equipped {
+    filter: brightness(1.6) saturate(1.4);
+    transform: scale(1.0);
+    transition: 0.2s ease;
+    filter: invert(57%) sepia(74%) saturate(2500%) hue-rotate(5deg) brightness(105%) contrast(105%);
 
 }

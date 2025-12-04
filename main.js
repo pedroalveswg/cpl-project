@@ -520,8 +520,15 @@ function renderCategory(id, items) {
     grid.appendChild(b);
   });
 
-  cont.appendChild(img);
-  cont.appendChild(grid);
+// highlight icon when any item is equipped
+if (equipped[cat]) {
+    img.classList.add("icon-equipped");
+} else {
+    img.classList.remove("icon-equipped");
+}
+
+cont.appendChild(img);
+cont.appendChild(grid);
 }
 
 
