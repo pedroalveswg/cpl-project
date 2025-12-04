@@ -526,6 +526,7 @@ if (equipped[cat]) {
 } else {
     img.classList.remove("icon-equipped");
 }
+ 
 
 cont.appendChild(img);
 cont.appendChild(grid);
