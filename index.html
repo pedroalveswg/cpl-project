@@ -11,7 +11,6 @@
     <title>SkillWhat?v1 cpl</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- EXTERNAL CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -68,7 +67,6 @@
 
     <!-- TOOLTIP -->
     <div id="skill-tooltip" class="skill-tooltip hidden">
-
         <div class="tooltip-title-row">
             <span id="tooltip-skill-name">Skill</span>
             <span>Modifiers</span>
@@ -90,9 +88,8 @@
         </div>
     </div>
 
-
     <!-- ======================================================
-         GEAR POPUP
+         GEAR POPUP (CORRIGIDO)
     =======================================================-->
     <div id="gear-popup" class="gear-popup hidden">
         <div class="gear-popup-inner">
@@ -100,28 +97,42 @@
             <button id="gear-drag" class="gear-move-btn">MOVE</button>
             <button id="gear-lock-btn" class="gear-lock-top">🔓</button>
 
-            <div id="gear-mousepad"></div>
-            <div id="gear-mouse"></div>
-            <div id="gear-keyboard"></div>
-            <div id="gear-headset"></div>
+            <!-- MOUSEPAD -->
+            <div class="gear-row">
+
+                <div id="gear-mousepad" class="gear-grid"></div>
+            </div>
+
+            <!-- MOUSE -->
+            <div class="gear-row">
+                
+                <div id="gear-mouse" class="gear-grid"></div>
+            </div>
+
+            <!-- KEYBOARD -->
+            <div class="gear-row">
+               
+                <div id="gear-keyboard" class="gear-grid"></div>
+            </div>
+
+            <!-- HEADSET -->
+            <div class="gear-row">
+              
+                <div id="gear-headset" class="gear-grid"></div>
+            </div>
 
         </div>
     </div>
 
-
     <!-- ======================================================
-         GAME POPUP — CORRIGIDO
+         GAME POPUP
     =======================================================-->
     <div id="game-popup" class="game-popup hidden">
         <div class="game-popup-inner">
 
-            <!-- MOVE BUTTON -->
             <button id="game-drag" class="gear-move-btn">MOVE</button>
-
-            <!-- LOCK BUTTON -->
             <button id="game-lock-btn" class="gear-lock-top">🔓</button>
 
-            <!-- TOPO -->
             <div class="game-content">
                 <button id="game-img-btn" class="game-img-btn"></button>
 
@@ -132,7 +143,6 @@
                 </div>
             </div>
 
-            <!-- GRID -->
             <div class="game-stats-grid">
 
                 <div class="left-side">
@@ -173,8 +183,6 @@
         </div>
     </div>
 
-
-    <!-- EXTERNAL JS -->
     <script src="main.js"></script>
 
 </body>
