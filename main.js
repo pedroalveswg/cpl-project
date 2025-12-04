@@ -442,6 +442,13 @@ if (maxBtn) {
     renderSkills();
   });
 }
+/* ---------------- EQUIPMENT ICONS ---------------- */
+const GEAR_ICONS = {
+  mousepad: "https://i.postimg.cc/W4SQ1NJV/mp1.png",
+  mouse: "https://i.postimg.cc/pdPwvhyr/m1.png",
+  keyboard: "https://i.postimg.cc/BvJr3Ltt/k1.png",
+  headset: "https://i.postimg.cc/5tfhJYj6/h1.png"
+};
 
 /* ---------------- EQUIPMENT DATA & UI ---------------- */
 const EQUIPMENT = {
@@ -474,30 +481,50 @@ const EQUIPMENT = {
 function renderCategory(id, items) {
   const cont = document.getElementById(id);
   if (!cont) return;
+
   cont.innerHTML = "";
+  cont.classList.add("gear-row");
+
+  const cat = id.replace("gear-", "");
+
+  const img = document.createElement("img");
+  img.src = GEAR_ICONS[cat];
+  img.className = "gear-row-icon";
+
+  const grid = document.createElement("div");
+  grid.className = "gear-grid";
+
   items.forEach(it => {
     const b = document.createElement("div");
     b.className = "gear-item";
-    const cat = id.replace("gear-", "");
-    const n = document.createElement("div");
-    n.className = "gear-name";
-    n.textContent = it.name;
-    const t = document.createElement("div");
-    t.className = "gear-booststr";
-    t.textContent = it.tokens;
-    b.appendChild(n);
-    b.appendChild(t);
-    if (equipped[cat] && equipped[cat].name === it.name) b.classList.add("equipped");
+
+    if (equipped[cat] && equipped[cat].name === it.name) {
+      b.classList.add("equipped");
+    }
+
+    b.innerHTML = `
+      <div class="gear-name">${it.name}</div>
+      <div class="gear-booststr">${it.tokens}</div>
+    `;
+
     b.addEventListener("click", () => {
-      equipped[cat] = (equipped[cat] && equipped[cat].name === it.name) ? null : it;
+      equipped[cat] =
+        equipped[cat] && equipped[cat].name === it.name ? null : it;
+
       recomputeEquipmentBoosts();
       updateGearButtonState();
       renderAllEquipmentUI();
       renderSkills();
     });
-    cont.appendChild(b);
+
+    grid.appendChild(b);
   });
+
+  cont.appendChild(img);
+  cont.appendChild(grid);
 }
+
+
 
 function renderAllEquipmentUI() {
   renderCategory("gear-mousepad", EQUIPMENT.mousepad);

@@ -569,7 +569,7 @@ filter: brightness(1.2);
     background: #1c1c1e;
     border-radius: 12px;
     border: 1px solid #2b2b2b;
-    padding: 20px;
+    padding: 20px 20px 15px 20px; 
     display: flex;
     flex-direction: column;
     box-shadow: 0 6px 30px rgba(0,0,0,0.6);
@@ -616,6 +616,8 @@ filter: brightness(1.2);
   gap: 20px 10px;         /* 35px = row-gap, 10px = column-gap */
   align-items: start;
   justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  flex: 1;
 }
 
 /* ===== QUADRADOS ===== */
@@ -633,6 +635,7 @@ filter: brightness(1.2);
     font-size: 10px;         /* 🔥 letra mais pequena */
     box-shadow: 0 2px 0 rgba(0,0,0,0.15);
     transition: 0.12s ease;
+    
 }
 
 .gear-item:hover {
@@ -900,4 +903,21 @@ filter: brightness(1.2);
 
 .games-active {
     filter: brightness(1.5);
+}
+
+.gear-row {
+  display: flex;
+  align-items: center;   /* CENTRA verticalmente a imagem */
+  justify-content: center; 
+  gap: 15px;
+  margin-bottom: 0px;
+  
+}
+
+.gear-row-icon {
+  width: 13px;
+  object-fit: contain;
+  margin-left: 0 !important;
+  opacity: 0.9;
+
 }
