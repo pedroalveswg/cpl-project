@@ -208,7 +208,15 @@ function renderSkills() {
     const limit = document.createElement("div");
     limit.className = "skill-limit";
     limit.style.width = s.max + "%";
-    bar.appendChild(limit);
+
+    // Se o limite é 100 → arredondado dos dois lados
+    if (s.max === 100) {
+        limit.style.borderRadius = "999px";
+    } else {
+        limit.style.borderRadius = "999px 0 0 999px";
+}
+
+bar.appendChild(limit); 
 
     // ----------------------------------
     // BASE (sempre laranja)
@@ -267,7 +275,7 @@ if (finalVal >= 100) {
   }
 
 } else {
-  baseF.style.backgroundColor = "#ff7a00";
+  baseF.style.backgroundColor = "#f56e0e";
   baseF.style.boxShadow = "none";
 
   if (boostF) {
