@@ -113,6 +113,29 @@ function updateTotals() {
     if (totalMax) totalMax.textContent = "/" + totalMaxValue;
 }
 
+const infoBtn = document.getElementById("info-btn");
+const infoTooltip = document.getElementById("info-tooltip");
+
+if (infoBtn && infoTooltip) {
+
+    infoBtn.addEventListener("mouseenter", (e) => {
+        infoTooltip.classList.remove("hidden");
+        positionInfoTooltip(e);
+    });
+
+    infoBtn.addEventListener("mousemove", (e) => {
+        positionInfoTooltip(e);
+    });
+
+    infoBtn.addEventListener("mouseleave", () => {
+        infoTooltip.classList.add("hidden");
+    });
+}
+
+function positionInfoTooltip(e) {
+    infoTooltip.style.left = (e.pageX - 800) + "px";
+    infoTooltip.style.top = (e.pageY + 15) + "px";
+}
 
 
 
