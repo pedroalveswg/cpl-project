@@ -1064,7 +1064,7 @@ filter: brightness(1.2);
     position: flex !important;
     z-index: 999999 !important;
     top: 40%;
-    left: 73%;
+    left: 82%;
     color: white;
     transform: translate(-50%, -50%);
     background: #1c1c1e;
@@ -1119,7 +1119,7 @@ filter: brightness(1.2);
 #missing-skill-confirm {
     position: absolute;
     left: 0px;
-    top: 234px;
+    top: 201px;
     width: 50px;
     height: 20px;
     border-radius: 0px 7px 0px 7px;

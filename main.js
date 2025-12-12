@@ -892,27 +892,43 @@ function openMissingSkillPopup(list) {
     popup.classList.remove("hidden");
 
     document.getElementById("missing-skill-confirm").onclick = () => {
-        let allGood = true;
+    let allGood = true;
 
-        list.forEach(s => {
-            const field = document.getElementById(`miss-${s.name}`);
-            const val = parseInt(field.value, 10);
+    list.forEach(s => {
+        const field = document.getElementById(`miss-${s.name}`);
+        const val = parseInt(field.value, 10);
 
-            if (!val || val < 1 || val > 100) {
-                allGood = false;
-                field.style.border = "1px solid red";
-            } else {
-                field.style.border = "";
-                s.max = val;
-            }
-        });
+        if (!val || val < 1 || val > 100) {
+            allGood = false;
+            field.style.border = "1px solid red";
+        } else {
+            field.style.border = "";
+            s.max = val;
+        }
+    });
 
-        if (!allGood) return;
+    if (!allGood) return;
 
-        popup.classList.add("hidden");
-        renderSkills();
-        computeMaxCareerHeart();
-    };
+    // FECHAR POPUP
+    popup.classList.add("hidden");
+
+    // 👇 AQUI ESTÁ A NOVA PARTE
+    // COMPLETAR LOAD COMO SE NÃO TIVESSE HAVIDO MISSING SKILLS
+
+    loadedSkillsBackup = JSON.parse(JSON.stringify(skills));
+    loadedName = document.querySelector(".player-name").textContent;
+    loadedAge  = document.querySelector(".player-age").textContent;
+
+    // REFRESH UI
+    recomputeEquipmentBoosts();
+    renderAllEquipmentUI();
+    updateGearButtonState();
+    renderSkills();
+    computeMaxCareerHeart();
+    updateGamesButtonState();
+    updateRetireDisplayIfNeeded();
+};
+
 }
 
 
@@ -1307,6 +1323,6 @@ renderAllEquipmentUI();
 recomputeEquipmentBoosts();
 updateGearButtonState();
 renderSkills();
+updateHeartsBasedOnGames(0);
 computeMaxCareerHeart();
 updateGamesButtonState();
-updateHeartsBasedOnGames(0);
