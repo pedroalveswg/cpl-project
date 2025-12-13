@@ -1165,7 +1165,7 @@ filter: brightness(1.2);
     border-radius: 10px;
     z-index: 9999;
     pointer-events: none;
-    border: 1px solid #888;
+    border: 2px solid #8e8e8e;
     width: 800px;      /* 👈 define o tamanho DO TOOLTIP */
     height: auto;      /* ou define altura fixa se quiseres */
 }
