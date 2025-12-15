@@ -134,29 +134,59 @@
 
 <!-- ================= GAME POPUP ================= -->
 <div id="game-popup" class="game-popup hidden">
-    <div class="game-popup-inner">
+        <div class="game-popup-inner">
 
-        <button id="game-drag">MOVE</button>
-        <button id="game-lock-btn">🔓</button>
+            <button id="game-drag" class="gear-move-btn">MOVE</button>
+            <button id="game-lock-btn" class="gear-lock-top">🔓</button>
 
-        <div class="game-content">
-            <span class="game-label">GAMES:</span>
-            <input id="game-input" class="game-input" type="number" min="0" max="1000" placeholder="0">
-            <button id="game-ok" class="game-ok">OK</button>
+            <div class="game-content">
+
+                <div class="game-row">
+                    <span class="game-label">GAMES:</span>
+                    <input id="game-input" class="game-input" type="number" min="0" max="1000" placeholder="0">
+                    <button id="game-ok" class="game-ok">OK</button>
+                </div>
+            </div>
+
+            <div class="game-stats-grid">
+
+                <div class="left-side">
+                    <div><span>💀</span> RETIRE AT: <strong id="retire-at">S30</strong></div>
+                    <div><span>🎮</span> GAMES PLAYED: <strong id="games-played">0</strong></div>
+                    <div><span>🤝</span> LOYAL: <strong id="loyal-status">NO</strong></div>
+                </div>
+
+                <div class="heart-row">
+                    <span class="heart-icon heart-small2">❤️</span>
+                    <span>100 games → </span>
+                    <span class="season-small">S9</span>
+                </div>
+
+                <div class="heart-row">
+                    <span class="heart-icon">❤️</span>
+                    <span>200 games → </span>
+                    <span class="season-big">S11</span>
+                </div>
+
+                <div class="heart-row">
+                    <span class="heart-icon">💛</span>
+                    <span>400 games → </span>
+                    <span class="season-gold">S15</span>
+                </div>
+
+                <div class="heart-row">
+                    <span class="heart-icon">💙</span>
+                    <span>800 games → </span>
+                    <span class="season-plat">S23</span>
+                </div>
+            </div>
+
+            <div class="max-heart-final">
+                MAX HEART POSSIBLE: <span class="blue-heart">💙</span> (S23)
+            </div>
+
         </div>
-
-        <div class="game-stats">
-            <div>💀 RETIRE AT: <strong id="retire-at">—</strong></div>
-            <div>🎮 GAMES PLAYED: <strong id="games-played">0</strong></div>
-            <div>🤝 LOYAL: <strong id="loyal-status">NO</strong></div>
-        </div>
-
-        <div class="max-heart-final">
-            MAX HEART POSSIBLE: —
-        </div>
-
     </div>
-</div>
 
 <!-- ================= VERSION ================= -->
 <div class="version-box">

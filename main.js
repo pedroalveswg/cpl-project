@@ -1315,7 +1315,7 @@ function updateHeartsBasedOnGames(games) {
     // calcula season destino consoante jogos restantes
     function targetSeason(req) {
         const missing = Math.max(0, req - games);
-        const seasonsNeeded = Math.ceil(missing / 50);
+        const seasonsNeeded = Math.ceil(missing / 55);
         return currentSeason + seasonsNeeded;
     }
 
@@ -1450,7 +1450,7 @@ function computeMaxCareerHeart() {
 
   function seasonGainFor(req) {
     const missing = Math.max(0, req - gamesPlayed);
-    const seasonsNeeded = Math.ceil(missing / 50);
+    const seasonsNeeded = Math.ceil(missing / 55);
     return currentSeason + seasonsNeeded;
   }
 
