@@ -1,13 +1,3 @@
-const APP_VERSION = "v3.3.13 - 19:34 - December.13.2025";
-
-const APP_UPDATES = [
-  "Loyal button moved",
-  "Skill bars visual updates",
-  "Tooltip Total Skills correction",
-  "Updates menu",
-  "Add Missing Limits to tryout copy > paste"
-];
-
 // ===== FORCE VERSION RENDER (ISOLATED) =====
 
 // ===== END FORCE VERSION =====
@@ -1525,15 +1515,16 @@ window.addEventListener("load", () => {
     return;
   }
 
-  v.textContent = "v3.3.14 - 4:07 - December.13.2025";
+  v.textContent = "v1.3.17 - 3:15 - December.19.2025";
 
   u.innerHTML = `
-    <li>Fixed Missing Limits flow for players loaded with unknown limits
-    <li>Loyal button moved
+    <li>Add PNG export button</li>
+    <li>Fixed Missing Limits flow for players loaded with unknown limits</li>
+    <li>Loyal button moved</li>
     <li>Skill bars visual updates</li>
-    <li>Tooltip Total Skills correction
+    <li>Tooltip Total Skills correction</li>
     <li>Updates menu</li>
-    <li>Add Missing Limites to tryout copy>past
+    <li>Add Missing Limites to tryout copy>past</li>
     `;
 });
 
@@ -1550,3 +1541,41 @@ document.addEventListener("DOMContentLoaded", () => {
   updateGamesButtonState();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const exportBtn = document.getElementById("export-card-btn");
+
+  if (!exportBtn) {
+    console.error("EXPORT BUTTON NOT FOUND");
+    return;
+  }
+
+  exportBtn.addEventListener("click", async () => {
+    const card = document.querySelector(".card");
+    if (!card) return;
+
+    const nameEl = document.querySelector(".player-name");
+    let filename = "skillwhat";
+
+    if (nameEl && nameEl.textContent.trim()) {
+      filename = nameEl.textContent
+        .trim()
+        .replace(/\s+/g, "_")
+        .replace(/[^\w\-]/g, "");
+    }
+
+    try {
+      const dataUrl = await htmlToImage.toPng(card, {
+        backgroundColor: "#000000",
+        pixelRatio: 2
+      });
+
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `${filename}.png`;
+      link.click();
+
+    } catch (e) {
+      console.error("EXPORT FAILED", e);
+    }
+  });
+});

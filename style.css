@@ -844,6 +844,9 @@ filter: brightness(1.2);
 
 /* Input 0–1000 */
 .game-input {
+    overflow: hidden;          /* 🔥 NUNCA SCROLL */
+    white-space: nowrap;       /* 🔥 impede quebra */
+    text-overflow: clip;       /* 🔥 corta sem reticências */
     width: 30px;
     height: 22px;
     background: #2a2a2a;
@@ -1327,4 +1330,43 @@ filter: brightness(1.2);
   border-radius: 5px;
   color: #f5f4dd;
   text-align: center;
+}
+
+.export-btn {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+
+  background: #f56e0e;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.export-btn:hover {
+  background: #edeec0;
+}
+
+player-header,
+.game-info-box {
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.player-age {
+  white-space: nowrap;
+}
+
+
+.export-icon {
+ scale: 4%;
+ cursor: pointer;
+
+ transform: translateX(17350px) translateY(-3930px);
 }
