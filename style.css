@@ -32,6 +32,7 @@ body {
 
     padding: 26px 26px 0 26px;
 
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

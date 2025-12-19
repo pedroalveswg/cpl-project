@@ -1564,16 +1564,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const dataUrl = await htmlToImage.toPng(card, {
-        backgroundColor: "#000000",
+      // Clona o card para evitar afetar o DOM
+      const clone = card.cloneNode(true);
+      clone.style.margin = "0";
+      clone.style.boxShadow = "none";
+
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "absolute";
+      wrapper.style.top = "-9999px";
+      wrapper.style.left = "-9999px";
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+
+      const dataUrl = await htmlToImage.toPng(clone, {
+        backgroundColor: null,
+        width: clone.offsetWidth,
+        height: clone.offsetHeight,
         pixelRatio: 2
       });
+
+      document.body.removeChild(wrapper);
 
       const link = document.createElement("a");
       link.href = dataUrl;
       link.download = `${filename}.png`;
       link.click();
-
     } catch (e) {
       console.error("EXPORT FAILED", e);
     }
