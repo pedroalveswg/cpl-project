@@ -83,6 +83,63 @@ updateClock(); updateGameDay();
 setInterval(updateClock, 1000);
 setInterval(updateGameDay, 60000);
 
+function renderMiniGear() {
+  const svg = document.getElementById("gear-minimap");
+  if (!svg) return;
+
+  svg.innerHTML = "";
+
+  const CELL = 14;
+  const GAP = 2;
+  const DOT = 6;
+
+  // desenha grelha 4x4
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 4; col++) {
+      const x = col * (CELL + GAP);
+      const y = row * (CELL + GAP);
+
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("x", x);
+      rect.setAttribute("y", y);
+      rect.setAttribute("width", CELL);
+      rect.setAttribute("height", CELL);
+      rect.setAttribute("fill", "none");
+      rect.setAttribute("stroke", "rgba(255,255,255,0.25)");
+      rect.setAttribute("stroke-width", "1");
+
+      svg.appendChild(rect);
+    }
+  }
+
+  const order = ["mousepad", "mouse", "keyboard", "headset"];
+
+  order.forEach((cat, row) => {
+    const item = equipped[cat];
+    if (!item) return;
+
+    const col = EQUIPMENT[cat].findIndex(e => e.name === item.name);
+    if (col === -1) return;
+
+    const cx =
+      col * (CELL + GAP) + CELL / 2;
+    const cy =
+      row * (CELL + GAP) + CELL / 2;
+
+    const dot = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    dot.setAttribute("x", cx - DOT / 2);
+    dot.setAttribute("y", cy - DOT / 2);
+    dot.setAttribute("width", DOT);
+    dot.setAttribute("height", DOT);
+    dot.setAttribute("rx", "1");
+    dot.setAttribute("fill", "#ff7a00");
+
+    svg.appendChild(dot);
+  });
+}
+
+
+
 /* ---------------- CALCS ---------------- */
 function computeSkillValues(s) {
   const equipBoost = equipmentBoosts[s.name] || 0;
@@ -551,6 +608,7 @@ if (maxMode) {
     updateTotals();
     renderSkills();
     computeMaxCareerHeart();
+    renderMiniGear();
 }
 
 
@@ -745,6 +803,7 @@ loadedAge = "19yo (day 5)";
         computeMaxCareerHeart();
         updateGamesButtonState();
         updateRetireDisplayIfNeeded();
+        renderMiniGear();
         return; // done
     }
 
@@ -781,6 +840,7 @@ loadedAge = data.playerAge;
     updateRetireDisplayIfNeeded();
     computeMaxCareerHeart();
     renderSkills();
+    renderMiniGear();
   });
 }
 
@@ -898,6 +958,7 @@ function renderCategory(id, items) {
       updateGearButtonState();
       renderAllEquipmentUI();
       renderSkills();
+      renderMiniGear();
     });
 
     grid.appendChild(b);
@@ -1069,6 +1130,7 @@ missingPopupOpen = false; // 🔓 permite novo popup num próximo LOAD
         computeMaxCareerHeart();
         updateGamesButtonState();
         updateRetireDisplayIfNeeded();
+        renderMiniGear();
     };
 }
 
@@ -1099,6 +1161,7 @@ if (gearApplyBtn) {
     recomputeEquipmentBoosts();
     updateGearButtonState();
     renderSkills();
+    renderMiniGear();
   });
 }
 
@@ -1270,6 +1333,7 @@ if (ageEl)  ageEl.textContent  = loadedAge;
 
     // REFRESH UI
     renderSkills();
+    renderMiniGear();
     computeMaxCareerHeart();
     updateRetireDisplayIfNeeded();
   });
@@ -1515,9 +1579,10 @@ window.addEventListener("load", () => {
     return;
   }
 
-  v.textContent = "v1.3.17 - 3:15 - December.19.2025";
+  v.textContent = "v1.3.18 - 23:28 - December.20.2025";
 
   u.innerHTML = `
+    <li>Add Minimap gear</li>
     <li>Add PNG export button</li>
     <li>Fixed Missing Limits flow for players loaded with unknown limits</li>
     <li>Loyal button moved</li>

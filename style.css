@@ -1371,3 +1371,31 @@ player-header,
 
  transform: translateX(17350px) translateY(-3930px);
 }
+
+/* ===== GEAR MINIMAP (4x4) — FIXED & STABLE ===== */
+.gear-minimap {
+  scale: 70%;
+  position: absolute;
+  top: 164px;
+  right: 1050px;
+  z-index: 200;
+
+}
+
+/* CÉLULA */
+.gear-mm-cell {
+  width: 9px;
+  height: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+/* BOLA */
+.gear-mm-dot {
+  width: 5px;
+  height: 5px;
+  background: #ff7a00;
+}
