@@ -10,6 +10,24 @@ const ICON_PLAT_HTML  = '💙';
 
 let missingPopupOpen = false;
 
+const boostTooltip = document.getElementById("boost-tooltip");
+
+function showBoostTooltip(e, finalValue) {
+  if (!boostTooltip) return;
+
+  const capped = Math.min(120, Math.round(finalValue));
+
+  boostTooltip.textContent = capped;
+  boostTooltip.style.left = e.pageX + 12 + "px";
+  boostTooltip.style.top  = e.pageY + 12 + "px";
+  boostTooltip.classList.add("visible");
+}
+
+
+function hideBoostTooltip() {
+  if (!boostTooltip) return;
+  boostTooltip.classList.remove("visible");
+}
 
 // backup of the initial skills to allow LOAD (empty) to fully restore initial state
 let skills = [
@@ -464,8 +482,21 @@ if (finalVal >= 100) {
     row.appendChild(bar);
     row.appendChild(val);
 
-    row.addEventListener("mousemove", e => showTooltipForSkill(s, e));
-    row.addEventListener("mouseleave", hideTooltip);
+bar.addEventListener("mouseenter", e => {
+  showTooltipForSkill(s, e);
+});
+
+bar.addEventListener("mousemove", e => {
+  showTooltipForSkill(s, e);
+});
+
+bar.addEventListener("mouseleave", () => {
+  hideTooltip();
+});
+
+
+row.addEventListener("mouseleave", hideTooltip);
+
 
     skillsList.appendChild(row);
   });
@@ -519,6 +550,15 @@ if (!boostCapAdded) {
 const boostWrap = document.createElement("div");
 boostWrap.className = "skill-boost-wrap";
 
+boostWrap.addEventListener("mouseenter", e => {
+  showBoostTooltip(e, v.final);
+});
+
+boostWrap.addEventListener("mousemove", e => {
+  showBoostTooltip(e, v.final);
+});
+
+boostWrap.addEventListener("mouseleave", hideBoostTooltip);
 
         const boostFill = document.createElement("div");
         boostFill.className = "skill-boost-fill";
@@ -528,22 +568,8 @@ boostWrap.className = "skill-boost-wrap";
         boostFill.style.width = pct + "%";
 
         boostWrap.appendChild(boostFill);
-const boostTooltip = document.getElementById("boost-tooltip");
 
-boostWrap.addEventListener("mouseenter", (e) => {
-  const total = Math.round(v.final); // ex: 113
-  boostTooltip.textContent = total;
-  boostTooltip.classList.add("visible");
-});
 
-boostWrap.addEventListener("mousemove", (e) => {
-  boostTooltip.style.left = e.pageX + 10 + "px";
-  boostTooltip.style.top  = e.pageY + 10 + "px";
-});
-
-boostWrap.addEventListener("mouseleave", () => {
-  boostTooltip.classList.remove("visible");
-});
 
         // ORDEM IMPORTANTE
         row.appendChild(minus);
@@ -697,23 +723,7 @@ function showTooltipForSkill(s, e) {
     const el = document.getElementById(id);
     if (el) el.textContent = val;
   };
-const totalSkillBox = document.querySelector(".total-skill-box");
 
-if (totalSkillBox && tooltip) {
-
-    totalSkillBox.addEventListener("mouseenter", (e) => {
-        showTotalSkillTooltip(e);
-    });
-
-    totalSkillBox.addEventListener("mousemove", (e) => {
-        tooltip.style.left = e.pageX + 15 + "px";
-        tooltip.style.top  = e.pageY + 15 + "px";
-    });
-
-    totalSkillBox.addEventListener("mouseleave", () => {
-        hideTooltip();
-    });
-}
 function showTotalSkillTooltip(e) {
 
     if (!tooltip) return;

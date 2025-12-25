@@ -1373,18 +1373,25 @@ player-header,
   height: 5px;
   margin-left: 7px;
   margin-top: 0px;   /* 👈 ESPAÇAMENTO VERTICAL ENTRE BARRAS */
-
+  position: relative;
   background: rgba(255,255,255,0.08);
   border-radius: 999px;
   overflow: hidden;
 }
-
+.skill-boost-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -6px;        /* 🔥 aumenta a hitbox invisível */
+  pointer-events: none; /* 🔥 CRÍTICO */
+}
 
 /* preenchimento */
 .skill-boost-fill {
   height: 100%;
   width: 0%;
-
+pointer-events: auto;
+  position: relative;
+  z-index: 2;
   background: #4caf50; /* verde elegante */
   border-radius: 999px;
 }
@@ -1405,4 +1412,29 @@ player-header,
 
   opacity: 0;
   transition: opacity 0.1s ease;
+}
+.boost-cap-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: #ede3aa;
+  opacity: 0.85;
+  margin-bottom: 6px;   /* espaço até à primeira barra */
+  pointer-events: none;
+  }
+  .boost-tooltip {
+  position: fixed;
+  background: rgba(20, 20, 20, 0.95);
+  color: #ede3aa;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+}
+
+.boost-tooltip.visible {
+  opacity: 1;
 }
